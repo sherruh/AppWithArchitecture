@@ -1,6 +1,7 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
 import com.geektech.lastfmapp.model.TrackEntity;
+import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
 
 import java.util.ArrayList;
 
@@ -30,8 +31,8 @@ public class TopTracksPresenter implements TopTracksContract.Presenter {
     }
 
     @Override
-    public void attachView(TopTracksContract.View view) {
-        mView = view;
+    public void attachView(BaseView view) {
+        mView = (TopTracksContract.View)view;
         mView.attachPresenter(this);
     }
 

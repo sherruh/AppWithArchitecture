@@ -1,25 +1,27 @@
-package com.geektech.lastfmapp.presentation.toptracks;
+package com.geektech.lastfmapp.presentation.topartists;
 
+import com.geektech.lastfmapp.model.ArtistEntity;
 import com.geektech.lastfmapp.model.TrackEntity;
 import com.geektech.lastfmapp.presentation.basecontracts.BasePresenter;
 import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
 
 import java.util.List;
 
-public interface TopTracksContract {
+public interface TopArtistsContract {
     interface View extends BaseView {
-        void showTracks(List<TrackEntity> tracks);
+        void showArtists(List<ArtistEntity> artists);
 
-        void openTrack(TrackEntity track);
+        void openArtist(ArtistEntity artist);
 
         void showMessage(String message);
 
     }
 
     interface Presenter extends BasePresenter {
-        void getTracks();
 
-        void onTrackClick(int position);
+        void getArtists();
+
+        void onArtistClick(int position);
 
     }
 }

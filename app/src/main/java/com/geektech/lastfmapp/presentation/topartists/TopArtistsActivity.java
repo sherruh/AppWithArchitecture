@@ -1,35 +1,35 @@
-package com.geektech.lastfmapp.presentation.toptracks;
+package com.geektech.lastfmapp.presentation.topartists;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.geektech.lastfmapp.R;
-import com.geektech.lastfmapp.model.TrackEntity;
+import com.geektech.lastfmapp.model.ArtistEntity;
 import com.geektech.lastfmapp.presentation.basecontracts.BasePresenter;
+import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
 
 import java.util.List;
 
-public class TopTracksActivity extends AppCompatActivity
-    implements TopTracksContract.View {
+public class TopArtistsActivity extends AppCompatActivity implements TopArtistsContract.View {
 
-    private TopTracksContract.Presenter mPresenter;
+    TopArtistsContract.Presenter mPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_top_tracks);
+        setContentView(R.layout.activity_top_artists);
 
-        mPresenter = new TopTracksPresenter();
+        mPresenter=new TopArtistsPresenter();
         mPresenter.attachView(this);
     }
 
     @Override
-    public void showTracks(List<TrackEntity> tracks) {
+    public void showArtists(List<ArtistEntity> artists) {
 
     }
 
     @Override
-    public void openTrack(TrackEntity track) {
+    public void openArtist(ArtistEntity artist) {
 
     }
 
@@ -40,7 +40,7 @@ public class TopTracksActivity extends AppCompatActivity
 
     @Override
     public void finishView() {
-        finish();
+
     }
 
     @Override
