@@ -40,7 +40,7 @@ public class TopArtistsActivity extends AppCompatActivity implements TopArtistsC
 
     @Override
     public void finishView() {
-
+        finish();
     }
 
     @Override

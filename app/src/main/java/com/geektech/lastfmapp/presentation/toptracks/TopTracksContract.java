@@ -8,6 +8,7 @@ import java.util.List;
 
 public interface TopTracksContract {
     interface View extends BaseView {
+
         void showTracks(List<TrackEntity> tracks);
 
         void openTrack(TrackEntity track);

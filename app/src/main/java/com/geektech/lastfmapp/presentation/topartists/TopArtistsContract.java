@@ -1,7 +1,6 @@
 package com.geektech.lastfmapp.presentation.topartists;
 
 import com.geektech.lastfmapp.model.ArtistEntity;
-import com.geektech.lastfmapp.model.TrackEntity;
 import com.geektech.lastfmapp.presentation.basecontracts.BasePresenter;
 import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
 
