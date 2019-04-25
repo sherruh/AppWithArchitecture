@@ -16,9 +16,8 @@ import java.util.List;
 
 import core.CoreFragment;
 
-public class TopTracksFragment extends CoreFragment {
+public class TopTracksFragment extends CoreFragment implements ITopTracksContract.View {
 
-    private ITopTracksContract.Presenter mPresenter;
 
     public static TopTracksFragment getInstance(){
         return new TopTracksFragment();
@@ -31,6 +30,31 @@ public class TopTracksFragment extends CoreFragment {
         TextView textView = (TextView) view;
         textView.setText("Fragment Top Tracks");
         return view;
+    }
+
+    @Override
+    public void showTracks(List<TrackEntity> tracks) {
+
+    }
+
+    @Override
+    public void openTrack(TrackEntity track) {
+
+    }
+
+    @Override
+    public void showMessage(String message) {
+
+    }
+
+    @Override
+    public void attachPresenter(ITopTracksContract.Presenter presenter) {
+
+    }
+
+    @Override
+    public void finishView() {
+
     }
 
     //region Contract

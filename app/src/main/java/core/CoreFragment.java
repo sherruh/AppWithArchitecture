@@ -2,17 +2,16 @@ package core;
 
 import android.support.v4.app.Fragment;
 
-public class CoreFragment extends Fragment implements ICoreMvpContract.View {
-    ICoreMvpContract.Presenter mPresenter;
+public class CoreFragment<T extends ICoreMvpContract.Presenter>
+        extends Fragment {
 
-    @Override
-    public void attachPresenter(ICoreMvpContract.Presenter presenter) {
+    T mPresenter;
+
+    public void attachPresent(T presenter){
         mPresenter=presenter;
-        mPresenter.attachView(this);
+        mPresenter.attachView(I);
     }
 
-    @Override
-    public void finishView() {
-        getActivity().finish();
-    }
+
+
 }

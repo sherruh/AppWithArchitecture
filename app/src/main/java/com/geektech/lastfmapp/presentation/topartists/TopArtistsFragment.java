@@ -14,7 +14,9 @@ import com.geektech.lastfmapp.model.ArtistEntity;
 
 import java.util.List;
 
-public class TopArtistsFragment extends Fragment implements ITopArtistsContract.View {
+import core.CoreFragment;
+
+public class TopArtistsFragment extends CoreFragment {
 
     ITopArtistsContract.Presenter mPresenter;
 
@@ -32,28 +34,5 @@ public class TopArtistsFragment extends Fragment implements ITopArtistsContract.
         return view;
     }
 
-    @Override
-    public void showArtists(List<ArtistEntity> artists) {
 
-    }
-
-    @Override
-    public void openArtist(ArtistEntity artist) {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-
-    }
-
-    @Override
-    public void attachPresenter(ITopArtistsContract.Presenter presenter) {
-
-    }
-
-    @Override
-    public void finishView() {
-        getActivity().finish();
-    }
 }
