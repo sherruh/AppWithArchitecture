@@ -1,11 +1,11 @@
 package com.geektech.lastfmapp.presentation.artist;
 
 import com.geektech.lastfmapp.model.ArtistEntity;
-import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
 
-public class ArtistPresenter implements ArtistContract.Presenter {
 
-    ArtistContract.View mView;
+public class ArtistPresenter implements IArtistContract.Presenter {
+
+    IArtistContract.View mView;
 
     @Override
     public void getArtist() {
@@ -20,8 +20,8 @@ public class ArtistPresenter implements ArtistContract.Presenter {
     }
 
     @Override
-    public void attachView(BaseView view) {
-        mView=(ArtistContract.View)view;
+    public void attachView(IArtistContract.View view) {
+        mView=(IArtistContract.View)view;
         mView.attachPresenter(this);
     }
 

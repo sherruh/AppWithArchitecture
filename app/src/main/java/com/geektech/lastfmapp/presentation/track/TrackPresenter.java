@@ -1,11 +1,11 @@
 package com.geektech.lastfmapp.presentation.track;
 
 import com.geektech.lastfmapp.model.TrackEntity;
-import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
 
-public class TrackPresenter implements TrackContract.Presenter {
 
-    TrackContract.View mView;
+public class TrackPresenter implements ITrackContract.Presenter {
+
+    ITrackContract.View mView;
 
     @Override
     public void getTrack() {
@@ -20,8 +20,8 @@ public class TrackPresenter implements TrackContract.Presenter {
     }
 
     @Override
-    public void attachView(BaseView view) {
-        mView=(TrackContract.View)view;
+    public void attachView(ITrackContract.View view) {
+        mView=(ITrackContract.View)view;
         mView.attachPresenter(this);
     }
 

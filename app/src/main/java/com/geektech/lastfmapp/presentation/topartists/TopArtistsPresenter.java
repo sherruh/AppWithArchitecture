@@ -1,14 +1,14 @@
 package com.geektech.lastfmapp.presentation.topartists;
 
 import com.geektech.lastfmapp.model.ArtistEntity;
-import com.geektech.lastfmapp.presentation.basecontracts.BaseView;
+
 
 
 import java.util.ArrayList;
 
-public class TopArtistsPresenter implements TopArtistsContract.Presenter {
+public class TopArtistsPresenter implements ITopArtistsContract.Presenter {
 
-    TopArtistsContract.View mView;
+    ITopArtistsContract.View mView;
 
     @Override
     public void getArtists() {
@@ -29,8 +29,8 @@ public class TopArtistsPresenter implements TopArtistsContract.Presenter {
     }
 
     @Override
-    public void attachView(BaseView view) {
-        mView=(TopArtistsContract.View)view;
+    public void attachView(ITopArtistsContract.View view) {
+        mView=view;
         mView.attachPresenter(this);
     }
 
