@@ -17,7 +17,7 @@ import retrofit2.http.QueryMap;
 
 public class TracksRemoteStorage implements ITracksRemoteStorage {
     private final static String BASE_URL = "http://ws.audioscrobbler.com";
-    private final static String API_KEY = "fd9879050c0e606b547d60ec49f0ca19";
+    private final static String API_KEY = "422b4ae97c17c164218f738cad32dcc4";
 
     public static Retrofit retrofit = new Retrofit.Builder()
             .baseUrl(BASE_URL)

@@ -2,14 +2,14 @@ package com.geektech.lastfmapp.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class TrackImage {
+public class ImageOfEntity {
     @SerializedName("#text")
     private String url;
 
     @SerializedName("size")
     private String size;
 
-    public TrackImage(String url, String size) {
+    public ImageOfEntity(String url, String size) {
         this.url = url;
         this.size = size;
     }

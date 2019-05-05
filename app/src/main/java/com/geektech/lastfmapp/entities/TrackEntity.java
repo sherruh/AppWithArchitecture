@@ -1,6 +1,5 @@
 package com.geektech.lastfmapp.entities;
 
-import com.geektech.core.Logger;
 import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
@@ -24,9 +23,9 @@ public class TrackEntity {
     private String listeners;
 
     @SerializedName("image")
-    private List<TrackImage> image;
+    private List<ImageOfEntity> image;
 
-    public TrackEntity( String name, ArtistEntity artist, String url, String playcount, String listeners, List<TrackImage> image) {
+    public TrackEntity( String name, ArtistEntity artist, String url, String playcount, String listeners, List<ImageOfEntity> image) {
         this.name = name;
         this.artist = artist;
         this.url = url;
@@ -68,11 +67,11 @@ public class TrackEntity {
         this.listeners = listeners;
     }
 
-    public List<TrackImage> getImage() {
+    public List<ImageOfEntity> getImage() {
         return image;
     }
 
-    public void setImage(List<TrackImage> image) {
+    public void setImage(List<ImageOfEntity> image) {
         this.image = image;
     }
 
