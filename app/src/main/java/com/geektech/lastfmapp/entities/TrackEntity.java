@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class TrackEntity {
+public class TrackEntity  {
     private int id;
 
     @SerializedName("name")

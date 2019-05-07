@@ -1,5 +1,6 @@
 package com.geektech.lastfmapp.presentation.topartists;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -8,10 +9,13 @@ import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpFragment;
 import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.entities.ArtistEntity;
+import com.geektech.lastfmapp.presentation.artist.ArtistActivity;
+import com.geektech.lastfmapp.presentation.artist.ArtistPresenter;
 import com.geektech.lastfmapp.presentation.topartists.recycler.TopArtistViewHolder;
 import com.geektech.lastfmapp.presentation.topartists.recycler.TopArtistsAdapter;
 import com.geektech.lastfmapp.presentation.toptracks.TopTracksFragment;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +28,7 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
 
     TopArtistsAdapter mAdapter;
     RecyclerView recyclerView;
+    ArrayList<ArtistEntity> artists;
 
     @Override
     protected int getLayoutId() {
@@ -36,10 +41,13 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter=new TopArtistsAdapter(this,new ArrayList<>());
         recyclerView.setAdapter(mAdapter);
+        artists=new ArrayList<>();
     }
 
     @Override
     public void showArtists(List<ArtistEntity> artists) {
+        this.artists.clear();
+        this.artists.addAll(artists);
         mAdapter.setArtists(artists);
     }
 
@@ -50,6 +58,9 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
 
     @Override
     public void onArtistClick(int position) {
-        Logger.d("Clicked on " +position);
+        ArtistActivity artistActivity=new ArtistActivity();
+        Intent intent=new Intent(getContext(),ArtistActivity.class);
+        intent.putExtra("artist",artists.get(position));
+        startActivity(new Intent(getContext(),ArtistActivity.class));
     }
 }
