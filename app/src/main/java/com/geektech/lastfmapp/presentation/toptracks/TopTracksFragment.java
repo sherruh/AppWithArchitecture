@@ -57,10 +57,7 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
 
     @Override
     public void onTrackClick(int position) {
-        Intent intent=new Intent(getContext(), TrackActivity.class);
-        Logger.d(tracks.get(position).getName());
-        intent.putExtra("track",tracks.get(position));
-        startActivity(intent);
+        openTrackDetails(tracks.get(position));
     }
 
     @Override
@@ -86,7 +83,9 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
 
     @Override
     public void openTrackDetails(TrackEntity track) {
-
+        Intent intent=new Intent(getContext(), TrackActivity.class);
+        intent.putExtra("track",track);
+        startActivity(intent);
     }
 
     //endregion

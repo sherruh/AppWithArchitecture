@@ -53,14 +53,13 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
 
     @Override
     public void openArtistDetails(ArtistEntity artist) {
-
+        Intent intent=new Intent(getContext(),ArtistActivity.class);
+        intent.putExtra("artist",artist);
+        startActivity(intent);
     }
 
     @Override
     public void onArtistClick(int position) {
-        Intent intent=new Intent(getContext(),ArtistActivity.class);
-        Logger.d(artists.get(position).getName());
-        intent.putExtra("artist",artists.get(position));
-        startActivity(intent);
+        openArtistDetails(artists.get(position));
     }
 }
