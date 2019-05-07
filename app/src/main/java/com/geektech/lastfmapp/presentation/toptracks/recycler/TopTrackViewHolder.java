@@ -20,7 +20,7 @@ public class TopTrackViewHolder extends RecyclerView.ViewHolder {
     ) {
         super(itemView);
         itemView.setOnClickListener(v -> {
-            listener.onTrackClick(getAdapterPosition());
+            listener.onTrackClick(getLayoutPosition());
         });
 
         textName=itemView.findViewById(R.id.text_name);

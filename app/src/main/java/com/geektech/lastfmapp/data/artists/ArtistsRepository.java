@@ -30,13 +30,13 @@ public class ArtistsRepository implements IArtistsRepository {
         if (remote!=null){
             remote.getArtists(new ArtistsCallback() {
                 @Override
-                public void onSuccess(List<ArtistEntity> result) {
-                    for (ArtistEntity artist:result){
+                public void onSuccess(List<ArtistEntity> artists) {
+                    for (ArtistEntity artist:artists){
                         artist.setId();
                     }
-                    local.setArtists(result);
+                    local.setArtists(artists);
 
-                    callback.onSuccess(result);
+                    callback.onSuccess(artists);
                 }
 
                 @Override

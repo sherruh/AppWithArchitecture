@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ArtistsResponseData {
 
-    @SerializedName("artists")
+    @SerializedName("artist")
     private List<ArtistEntity> data;
 
     public List<ArtistEntity> getData() {

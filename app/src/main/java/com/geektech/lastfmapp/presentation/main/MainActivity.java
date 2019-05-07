@@ -11,14 +11,17 @@ import android.os.Bundle;
 
 import com.geektech.lastfmapp.App;
 import com.geektech.lastfmapp.R;
+import com.geektech.lastfmapp.presentation.topartists.ITopArtistsContract;
+import com.geektech.lastfmapp.presentation.topartists.TopArtistsFragment;
+import com.geektech.lastfmapp.presentation.topartists.TopArtistsPresenter;
 import com.geektech.lastfmapp.presentation.toptracks.ITopTracksContract;
 import com.geektech.lastfmapp.presentation.toptracks.TopTracksFragment;
 import com.geektech.lastfmapp.presentation.toptracks.TopTracksPresenter;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ITopTracksContract.Presenter mPresenter;
-    private ITopTracksContract.Presenter mPresenter2;
+    private ITopTracksContract.Presenter topTracksPresenter;
+    private ITopArtistsContract.Presenter topArtistsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,12 +35,12 @@ public class MainActivity extends AppCompatActivity {
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        mPresenter = new TopTracksPresenter(App.tracksRepository);
-        mPresenter.attachView((ITopTracksContract.View)pagerAdapter.getItem(0));
-        mPresenter.getTracks();
-        mPresenter2 = new TopTracksPresenter(App.tracksRepository);
-        mPresenter2.attachView((ITopTracksContract.View)pagerAdapter.getItem(1));
-        mPresenter2.getTracks();
+        topTracksPresenter = new TopTracksPresenter(App.tracksRepository);
+        topTracksPresenter.attachView((ITopTracksContract.View)pagerAdapter.getItem(0));
+        topTracksPresenter.getTracks();
+        topArtistsPresenter = new TopArtistsPresenter(App.artistsRepository);
+        topArtistsPresenter.attachView((ITopArtistsContract.View)pagerAdapter.getItem(1));
+        topArtistsPresenter.getArtists();
     }
 
     public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
@@ -45,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
         private String tabTitles[] = new String[] { "Top tracks","Top artists"};
         private Fragment[] fragments=new Fragment[]{
                 TopTracksFragment.newInstance(),
-                TopTracksFragment.newInstance()
+                TopArtistsFragment.newInstance()
         };
 
 

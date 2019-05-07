@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class ArtistsResponse {
 
-    @SerializedName("topartists")
+    @SerializedName("artists")
     private ArtistsResponseData artists;
 
     public ArtistsResponseData getArtists() {

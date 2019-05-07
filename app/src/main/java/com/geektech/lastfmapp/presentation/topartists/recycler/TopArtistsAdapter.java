@@ -11,11 +11,12 @@ import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.entities.ArtistEntity;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class TopArtistsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private TopArtistViewHolder.TopArtistClickListener mListener;
-    private ArrayList<ArtistEntity> mArtists;
+    private List<ArtistEntity> mArtists;
 
     public TopArtistsAdapter(TopArtistViewHolder.TopArtistClickListener Listener,
                              ArrayList<ArtistEntity> artists) {
@@ -48,7 +49,7 @@ public class TopArtistsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
         return mArtists.size();
     }
 
-    public void setArtists(ArrayList<ArtistEntity> artists){
+    public void setArtists(List<ArtistEntity> artists){
         mArtists.clear();
         mArtists.addAll(artists);
         notifyDataSetChanged();

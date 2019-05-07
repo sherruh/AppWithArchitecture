@@ -1,10 +1,13 @@
 package com.geektech.lastfmapp.data.artists.remote;
 
+import com.geektech.core.Logger;
 import com.geektech.lastfmapp.data.artists.IArtistsRepository;
 import com.geektech.lastfmapp.data.artists.remote.model.ArtistsResponse;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
 import com.geektech.lastfmapp.data.tracks.remote.TracksRemoteStorage;
 import com.geektech.lastfmapp.data.tracks.remote.model.TracksResponse;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -34,7 +37,7 @@ public class ArtistsRemoteStorage implements IArtistsRemoteStorage {
                 @Query("api_key") String apiKey,
                 @Query("format") String format,
                 @Query("page") int page,
-                @Query("limit") int limit
+                @Query("perPage") int limit
         );
     }
 
