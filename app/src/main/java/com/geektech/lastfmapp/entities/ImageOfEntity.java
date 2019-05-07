@@ -2,7 +2,9 @@ package com.geektech.lastfmapp.entities;
 
 import com.google.gson.annotations.SerializedName;
 
-public class ImageOfEntity {
+import java.io.Serializable;
+
+public class ImageOfEntity implements Serializable {
     @SerializedName("#text")
     private String url;
 

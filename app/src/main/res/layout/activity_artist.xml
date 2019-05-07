@@ -17,18 +17,20 @@
     <TextView
         android:id="@+id/text_activity_artist_name"
         android:layout_below="@id/image_activity_artist"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
         android:textStyle="bold"
+        android:layout_centerHorizontal="true"
         />
 
     <TextView
         android:id="@+id/text_activity_artist_listeners"
         android:layout_below="@id/text_activity_artist_name"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="20dp"
+        android:layout_centerHorizontal="true"
         />
 
 

@@ -2,9 +2,10 @@ package com.geektech.lastfmapp.entities;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class TrackEntity  {
+public class TrackEntity implements Serializable {
     private int id;
 
     @SerializedName("name")

@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpActivity;
 import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.entities.ArtistEntity;
@@ -39,8 +40,10 @@ public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
 
     @Override
     public void showArtistDetails(ArtistEntity artist) {
+        Logger.d("here");
+        Logger.d(artist.getName());
         textName.setText(artist.getName());
-        textListeners.setText("Listeners "+artist.getListeners());
+        textListeners.setText("Listeners: "+artist.getListeners());
         Glide.with(this).load(artist.getImage().get(2).getUrl()).
                 into(imageArtist);
     }
