@@ -1,5 +1,6 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -13,8 +14,10 @@ import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.data.tracks.remote.TracksRemoteStorage;
 import com.geektech.lastfmapp.data.tracks.remote.model.TracksResponse;
 import com.geektech.lastfmapp.entities.TrackEntity;
+import com.geektech.lastfmapp.presentation.artist.ArtistActivity;
 import com.geektech.lastfmapp.presentation.toptracks.recycler.TopTrackViewHolder;
 import com.geektech.lastfmapp.presentation.toptracks.recycler.TopTracksAdapter;
+import com.geektech.lastfmapp.presentation.track.TrackActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
     implements ITopTracksContract.View, TopTrackViewHolder.TopTrackClickListener {
 
     private TopTracksAdapter mAdapter;
+    private ArrayList<TrackEntity> tracks;
 
     public static TopTracksFragment newInstance() {
         TopTracksFragment fragment = new TopTracksFragment();
@@ -40,7 +44,7 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new TopTracksAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(mAdapter);
-
+        tracks=new ArrayList<>();
     }
 
     private void refreshTracks() {
@@ -53,7 +57,10 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
 
     @Override
     public void onTrackClick(int position) {
-
+        Intent intent=new Intent(getContext(), TrackActivity.class);
+        Logger.d(tracks.get(position).getName());
+        intent.putExtra("track",tracks.get(position));
+        startActivity(intent);
     }
 
     @Override
@@ -72,9 +79,8 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
 
     @Override
     public void showTracks(List<TrackEntity> tracks) {
-        for (TrackEntity track : tracks) {
-            Logger.d(track.toString());
-        }
+        this.tracks.clear();
+        this.tracks.addAll(tracks);
         mAdapter.setTracks(tracks);
     }
 

@@ -22,7 +22,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presentation.artist.ArtistActivity"/>
+        <activity android:name=".presentation.artist.ArtistActivity" />
+        <activity android:name=".presentation.track.TrackActivity"></activity>
     </application>
 
 </manifest>

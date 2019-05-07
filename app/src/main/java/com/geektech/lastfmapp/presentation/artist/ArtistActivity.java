@@ -40,8 +40,6 @@ public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
 
     @Override
     public void showArtistDetails(ArtistEntity artist) {
-        Logger.d("here");
-        Logger.d(artist.getName());
         textName.setText(artist.getName());
         textListeners.setText("Listeners: "+artist.getListeners());
         Glide.with(this).load(artist.getImage().get(2).getUrl()).
