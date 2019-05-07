@@ -4,10 +4,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".presentation.toptracks.TopTracksActivity">
+    tools:context=".presentation.topartists.TopArtistsActivity">
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler_top_tracks"
+        android:id="@+id/recycler_top_artists"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >

@@ -19,10 +19,6 @@ import com.geektech.lastfmapp.presentation.toptracks.recycler.TopTracksAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presenter>
     implements ITopTracksContract.View, TopTrackViewHolder.TopTrackClickListener {
 
