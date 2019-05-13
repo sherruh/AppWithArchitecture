@@ -31,7 +31,6 @@ public class TopArtistsPresenter extends CoreMvpPresenter<ITopArtistsContract.Vi
             @Override
             public void onSuccess(List<ArtistEntity> artists) {
                 setCache(artists);
-                Logger.d("Artist list size " +artists.size());
                 if(view!=null){
                     view.showArtists(artists);
                 }

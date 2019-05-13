@@ -2,6 +2,7 @@ package com.geektech.lastfmapp.data.artists;
 
 import android.support.annotation.Nullable;
 
+import com.geektech.core.Logger;
 import com.geektech.lastfmapp.data.artists.local.ArtistsLocalStorage;
 import com.geektech.lastfmapp.data.artists.remote.ArtistsRemoteStorage;
 import com.geektech.lastfmapp.entities.ArtistEntity;
@@ -37,6 +38,7 @@ public class ArtistsRepository implements IArtistsRepository {
     public ArtistEntity getArtist(String id) {
 
         ArtistEntity artist = mCache.get(id);
+        Logger.d(artist.getName());
 
         if(artist != null && local != null){
             local.getArtist();
@@ -55,6 +57,7 @@ public class ArtistsRepository implements IArtistsRepository {
                     for (ArtistEntity artist:artists){
                         artist.setId();
                     }
+                    setCache(artists);
                     local.setArtists(artists);
 
                     callback.onSuccess(artists);

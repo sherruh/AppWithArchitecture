@@ -17,7 +17,7 @@ public class TopArtistViewHolder extends RecyclerView.ViewHolder {
 
     public TopArtistViewHolder(@NonNull View itemView,TopArtistClickListener clickListener) {
         super(itemView);
-        itemView.setOnClickListener(v -> clickListener.onArtistClick(getLayoutPosition()));
+        itemView.setOnClickListener(v -> clickListener.onArtistClick(getAdapterPosition()));
 
         textName=itemView.findViewById(R.id.text_name_artist);
         textListeners=itemView.findViewById(R.id.text_artist_listeners);

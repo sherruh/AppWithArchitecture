@@ -1,5 +1,6 @@
 package com.geektech.lastfmapp.presentation.track;
 
+import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpPresenter;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
 import com.geektech.lastfmapp.entities.TrackEntity;

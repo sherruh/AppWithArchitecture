@@ -1,5 +1,6 @@
 package com.geektech.lastfmapp.presentation.artist;
 
+import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpPresenter;
 import com.geektech.lastfmapp.data.artists.IArtistsRepository;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
