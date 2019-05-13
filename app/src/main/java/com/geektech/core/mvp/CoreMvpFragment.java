@@ -23,7 +23,8 @@ public abstract class CoreMvpFragment<T extends ICoreMvpContract.Presenter> exte
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
         return inflater.inflate(getLayoutId(), container, false);
     }
 

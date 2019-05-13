@@ -60,16 +60,6 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
         if(presenter != null) presenter.onTrackClick(position);
     }
 
-    @Override
-    public void onShareClick(int position) {
-
-    }
-
-    @Override
-    public void onBookmarkClick(int position) {
-
-    }
-
     //endregion
 
     //region Contract

@@ -37,13 +37,8 @@ public class TopTracksAdapter extends RecyclerView.Adapter<RecyclerView.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        TrackEntity track=mTracks.get(i);
-        TopTrackViewHolder topTrackViewHolder=((TopTrackViewHolder)viewHolder);
-        topTrackViewHolder.textName.setText(track.getName());
-        topTrackViewHolder.textArtist.setText(track.getArtist().getName());
-        Glide.with(topTrackViewHolder.itemView).
-                load(track.getImage().get(2).getUrl()).
-                into(topTrackViewHolder.imageTrack);
+        TrackEntity track = mTracks.get(i);
+        ((TopTrackViewHolder)viewHolder).onBind(track);
     }
 
     @Override

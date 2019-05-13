@@ -22,38 +22,48 @@ public class MainActivity extends AppCompatActivity {
 
     private ITopTracksContract.Presenter topTracksPresenter;
     private ITopArtistsContract.Presenter topArtistsPresenter;
+    private TopArtistsFragment topArtistsFragment;
+    private TopTracksFragment topTracksFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        topArtistsPresenter = new TopArtistsPresenter(App.artistsRepository);
+        topTracksPresenter = new TopTracksPresenter(App.tracksRepository);
+        topArtistsFragment = TopArtistsFragment.newInstance();
+        topTracksFragment = TopTracksFragment.newInstance();
+        topArtistsPresenter.attachView(topArtistsFragment);
+        topTracksPresenter.attachView(topTracksFragment);
+
         ViewPager viewPager = findViewById(R.id.viewpager);
-        SampleFragmentPagerAdapter pagerAdapter=new SampleFragmentPagerAdapter(getSupportFragmentManager(),
+        TopChartsFragmentPagerAdapter pagerAdapter = new TopChartsFragmentPagerAdapter(getSupportFragmentManager(),
                 MainActivity.this);
+        pagerAdapter.setFragments(topTracksFragment, topArtistsFragment);
         viewPager.setAdapter(pagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
-        topTracksPresenter = new TopTracksPresenter(App.tracksRepository);
-        topTracksPresenter.attachView((ITopTracksContract.View)pagerAdapter.getItem(0));
+
+
         topTracksPresenter.getTracks();
-        topArtistsPresenter = new TopArtistsPresenter(App.artistsRepository);
-        topArtistsPresenter.attachView((ITopArtistsContract.View)pagerAdapter.getItem(1));
         topArtistsPresenter.getArtists();
     }
 
-    public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
+    public class TopChartsFragmentPagerAdapter extends FragmentPagerAdapter {
         final int PAGE_COUNT = 2;
         private String tabTitles[] = new String[] { "Top tracks","Top artists"};
-        private Fragment[] fragments=new Fragment[]{
-                TopTracksFragment.newInstance(),
-                TopArtistsFragment.newInstance()
-        };
+        private Fragment[] fragments;
 
-
-        public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
+        public TopChartsFragmentPagerAdapter(FragmentManager fm, Context context) {
             super(fm);
+        }
+
+        public void setFragments(TopTracksFragment topTracksFragment,TopArtistsFragment topArtistsFragment){
+            fragments=new Fragment[]{
+                    topTracksFragment,topArtistsFragment
+            };
         }
 
         @Override public int getCount() {

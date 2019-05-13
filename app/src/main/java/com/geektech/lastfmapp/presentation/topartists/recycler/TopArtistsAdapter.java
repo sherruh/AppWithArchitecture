@@ -34,13 +34,8 @@ public class TopArtistsAdapter extends RecyclerView.Adapter<RecyclerView.ViewHol
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder viewHolder, int i) {
-        ArtistEntity artistEntity=mArtists.get(i);
-        TopArtistViewHolder topArtistViewHolder=(TopArtistViewHolder)viewHolder;
-        topArtistViewHolder.textName.setText(artistEntity.getName());
-        topArtistViewHolder.textListeners.setText(artistEntity.getListeners());
-        Glide.with(topArtistViewHolder.image).
-                load(artistEntity.getImage().get(2).getUrl()).
-                into(topArtistViewHolder.image);
+        ArtistEntity artist = mArtists.get(i);
+        ((TopArtistViewHolder)viewHolder).onBind(artist);
 
     }
 
