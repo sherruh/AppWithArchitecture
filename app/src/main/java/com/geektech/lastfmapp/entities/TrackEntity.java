@@ -6,6 +6,9 @@ import java.io.Serializable;
 import java.util.List;
 
 public class TrackEntity implements Serializable {
+
+    private long rId;
+
     private String id;
 
     @SerializedName("name")
