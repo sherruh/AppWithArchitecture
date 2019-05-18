@@ -61,7 +61,7 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
     @Override
     public void openArtistDetails(ArtistEntity artist) {
         if(getActivity() != null){
-            ArtistActivity.start(getActivity(),artist.getId());
+            ArtistActivity.start(getActivity(),artist.getName());
         }
     }
 

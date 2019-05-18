@@ -29,19 +29,18 @@ public class ArtistsRepository implements IArtistsRepository {
         }
 
         for(ArtistEntity artist : artists) {
-            mCache.put(artist.getId(), artist);
+            mCache.put(artist.getName(), artist);
         }
     }
 
     @Nullable
     @Override
-    public ArtistEntity getArtist(String id) {
+    public ArtistEntity getArtist(String name) {
 
-        ArtistEntity artist = mCache.get(id);
-        Logger.d(artist.getName());
+        ArtistEntity artist = mCache.get(name);
 
         if (artist == null && local != null){
-            local.getArtist();
+            artist=local.getArtist(name);
         }
 
         return artist;
