@@ -7,13 +7,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.geektech.core.Logger;
 import com.geektech.core.mvp.CoreMvpActivity;
 import com.geektech.lastfmapp.App;
 import com.geektech.lastfmapp.R;
 import com.geektech.lastfmapp.entities.ArtistEntity;
-import com.geektech.lastfmapp.presentation.track.TrackActivity;
-import com.geektech.lastfmapp.presentation.track.TrackPresenter;
 
 public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
     implements IArtistContract.View {
@@ -35,7 +32,7 @@ public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
         activity.startActivity(intent);
     }
 
-    private static String getTrackId(Intent intent) {
+    private static String getArtistId(Intent intent) {
         return intent.getStringExtra(EXTRA_ARTIST_ID);
     }
 
@@ -56,7 +53,7 @@ public class ArtistActivity extends CoreMvpActivity<IArtistContract.Presenter>
     protected IArtistContract.Presenter providePresenter() {
         return new ArtistPresenter(
                 App.artistsRepository,
-                getTrackId(getIntent())
+                getArtistId(getIntent())
         );
     }
 

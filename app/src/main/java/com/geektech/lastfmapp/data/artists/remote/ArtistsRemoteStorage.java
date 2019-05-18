@@ -29,18 +29,6 @@ public class ArtistsRemoteStorage implements IArtistsRemoteStorage {
 
     public static ArtistsNetworkClient client = retrofit.create(ArtistsNetworkClient.class);
 
-    private interface ArtistsNetworkClient {
-
-        @GET("/2.0/")
-        Call<ArtistsResponse> getArtists(
-                @Query("method") String method,
-                @Query("api_key") String apiKey,
-                @Query("format") String format,
-                @Query("page") int page,
-                @Query("perPage") int limit
-        );
-    }
-
     @Override
     public void getArtists(IArtistsRepository.ArtistsCallback callback) {
         Call<ArtistsResponse> call = client.getArtists(
@@ -70,5 +58,17 @@ public class ArtistsRemoteStorage implements IArtistsRemoteStorage {
                 callback.onFailure("Top artists failure: " + t.getMessage());
             }
         });
+    }
+
+    private interface ArtistsNetworkClient {
+
+        @GET("/2.0/")
+        Call<ArtistsResponse> getArtists(
+                @Query("method") String method,
+                @Query("api_key") String apiKey,
+                @Query("format") String format,
+                @Query("page") int page,
+                @Query("perPage") int limit
+        );
     }
 }

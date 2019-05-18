@@ -39,35 +39,30 @@ public class MainActivity extends AppCompatActivity {
 
         ViewPager viewPager = findViewById(R.id.viewpager);
         TopChartsFragmentPagerAdapter pagerAdapter = new TopChartsFragmentPagerAdapter(getSupportFragmentManager(),
-                MainActivity.this);
-        pagerAdapter.setFragments(topTracksFragment, topArtistsFragment);
+                MainActivity.this,new Fragment[]{
+                        topTracksFragment,topArtistsFragment
+        });
+
         viewPager.setAdapter(pagerAdapter);
 
         TabLayout tabLayout = findViewById(R.id.sliding_tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-
-        topTracksPresenter.getTracks();
-        topArtistsPresenter.getArtists();
     }
 
     public class TopChartsFragmentPagerAdapter extends FragmentPagerAdapter {
-        final int PAGE_COUNT = 2;
+
         private String tabTitles[] = new String[] { "Top tracks","Top artists"};
         private Fragment[] fragments;
 
-        public TopChartsFragmentPagerAdapter(FragmentManager fm, Context context) {
-            super(fm);
-        }
+        public TopChartsFragmentPagerAdapter(FragmentManager fm, Context context,Fragment[] fragments) {
 
-        public void setFragments(TopTracksFragment topTracksFragment,TopArtistsFragment topArtistsFragment){
-            fragments=new Fragment[]{
-                    topTracksFragment,topArtistsFragment
-            };
+            super(fm);
+            this.fragments=fragments;
         }
 
         @Override public int getCount() {
-            return PAGE_COUNT;
+            return fragments.length;
         }
 
         @Override public Fragment getItem(int position) {

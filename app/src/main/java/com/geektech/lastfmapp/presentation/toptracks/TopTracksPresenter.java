@@ -26,7 +26,18 @@ public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View
     }
 
     @Override
+    public void onViewCreated() {
+        super.onViewCreated();
+        getTracks();
+    }
+
+    @Override
     public void getTracks() {
+
+        if(view != null){
+            view.startRefresh();
+        }
+
         repository.getTracks(new ITracksRepository.TracksCallback() {
             @Override
             public void onSuccess(List<TrackEntity> tracks) {
@@ -34,6 +45,7 @@ public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View
                 Logger.d("Tracks success " + tracks.size());
                 if (view != null) {
                     view.showTracks(tracks);
+                    view.stopRefresh();
                 }
             }
 
@@ -42,6 +54,7 @@ public class TopTracksPresenter extends CoreMvpPresenter<ITopTracksContract.View
                 Logger.d(message);
                 if (view != null) {
                     view.showMessage(message);
+                    view.stopRefresh();
                 }
             }
         });

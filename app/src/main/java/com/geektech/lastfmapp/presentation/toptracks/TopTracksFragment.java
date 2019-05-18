@@ -1,6 +1,7 @@
 package com.geektech.lastfmapp.presentation.toptracks;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
@@ -26,6 +27,7 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
     implements ITopTracksContract.View, TopTrackViewHolder.TopTrackClickListener {
 
     private TopTracksAdapter mAdapter;
+    private SwipeRefreshLayout mRefresh;
 
 
     public static TopTracksFragment newInstance() {
@@ -40,7 +42,10 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
 
     @Override
     protected void initView(View view) {
-        RecyclerView recyclerView = getActivity().findViewById(R.id.recycler_top_tracks);
+        mRefresh = view.findViewById(R.id.refresh_top_tracks);
+        mRefresh.setOnRefreshListener(() -> refreshTracks());
+
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_top_tracks);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter = new TopTracksAdapter(this, new ArrayList<>());
         recyclerView.setAdapter(mAdapter);
@@ -73,6 +78,20 @@ public class TopTracksFragment extends CoreMvpFragment<ITopTracksContract.Presen
     public void openTrackDetails(TrackEntity track) {
         if(getActivity() != null){
             TrackActivity.start(getActivity(),track.getId());
+        }
+    }
+
+    @Override
+    public void startRefresh() {
+        if (mRefresh != null) {
+            mRefresh.setRefreshing(true);
+        }
+    }
+
+    @Override
+    public void stopRefresh() {
+        if (mRefresh != null) {
+            mRefresh.setRefreshing(false);
         }
     }
 

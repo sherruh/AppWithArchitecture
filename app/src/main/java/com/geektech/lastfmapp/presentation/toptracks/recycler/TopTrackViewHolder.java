@@ -12,9 +12,9 @@ import com.geektech.lastfmapp.entities.TrackEntity;
 
 public class TopTrackViewHolder extends RecyclerView.ViewHolder {
 
-    public TextView textName;
-    public TextView textArtist;
-    public ImageView imageTrack;
+    private TextView textName;
+    private TextView textArtist;
+    private ImageView imageTrack;
 
     public TopTrackViewHolder(
             @NonNull View itemView,

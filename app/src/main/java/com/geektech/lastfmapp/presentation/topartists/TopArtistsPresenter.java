@@ -13,6 +13,12 @@ import java.util.List;
 public class TopArtistsPresenter extends CoreMvpPresenter<ITopArtistsContract.View>
         implements ITopArtistsContract.Presenter {
 
+    @Override
+    public void onViewCreated() {
+        super.onViewCreated();
+        getArtists();
+    }
+
     private IArtistsRepository artistsRepository;
     private ArrayList<ArtistEntity> mCache = new ArrayList<>();
 
@@ -27,12 +33,17 @@ public class TopArtistsPresenter extends CoreMvpPresenter<ITopArtistsContract.Vi
 
     @Override
     public void getArtists() {
+        if(view != null){
+            view.startRefresh();
+        }
+
         artistsRepository.getArtists(new IArtistsRepository.ArtistsCallback() {
             @Override
             public void onSuccess(List<ArtistEntity> artists) {
                 setCache(artists);
                 if(view!=null){
                     view.showArtists(artists);
+                    view.stopRefresh();
                 }
             }
 
@@ -41,6 +52,7 @@ public class TopArtistsPresenter extends CoreMvpPresenter<ITopArtistsContract.Vi
                 Logger.d("Failed " + message);
                 if (view!=null){
                     view.showMessage(message);
+                    view.stopRefresh();
                 }
             }
         });

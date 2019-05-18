@@ -14,9 +14,9 @@ import com.geektech.lastfmapp.presentation.toptracks.recycler.TopTrackViewHolder
 
 public class TopArtistViewHolder extends RecyclerView.ViewHolder {
 
-    TextView textName;
-    TextView textListeners;
-    ImageView image;
+    private TextView textName;
+    private TextView textListeners;
+    private ImageView image;
 
     public TopArtistViewHolder(@NonNull View itemView,TopArtistClickListener clickListener) {
         super(itemView);

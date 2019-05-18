@@ -40,7 +40,7 @@ public class ArtistsRepository implements IArtistsRepository {
         ArtistEntity artist = mCache.get(id);
         Logger.d(artist.getName());
 
-        if(artist != null && local != null){
+        if (artist == null && local != null){
             local.getArtist();
         }
 

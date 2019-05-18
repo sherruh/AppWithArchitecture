@@ -1,6 +1,7 @@
 package com.geektech.lastfmapp.presentation.topartists;
 
 import android.content.Intent;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -28,6 +29,7 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
 
     TopArtistsAdapter mAdapter;
     RecyclerView recyclerView;
+    private SwipeRefreshLayout mRefresh;
 
     @Override
     protected int getLayoutId() {
@@ -36,10 +38,19 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
 
     @Override
     protected void initView(View view) {
-        recyclerView=getActivity().findViewById(R.id.recycler_top_artists);
+        mRefresh=view.findViewById(R.id.refresh_top_artists);
+        mRefresh.setOnRefreshListener(() -> refreshArtists());
+
+        recyclerView=view.findViewById(R.id.recycler_top_artists);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mAdapter=new TopArtistsAdapter(this,new ArrayList<>());
         recyclerView.setAdapter(mAdapter);
+    }
+
+    private void refreshArtists() {
+        if (presenter != null) {
+            presenter.getArtists();
+        }
     }
 
     @Override
@@ -51,6 +62,20 @@ public class TopArtistsFragment extends CoreMvpFragment<ITopArtistsContract.Pres
     public void openArtistDetails(ArtistEntity artist) {
         if(getActivity() != null){
             ArtistActivity.start(getActivity(),artist.getId());
+        }
+    }
+
+    @Override
+    public void startRefresh() {
+        if (mRefresh != null) {
+            mRefresh.setRefreshing(true);
+        }
+    }
+
+    @Override
+    public void stopRefresh() {
+        if (mRefresh != null) {
+            mRefresh.setRefreshing(false);
         }
     }
 

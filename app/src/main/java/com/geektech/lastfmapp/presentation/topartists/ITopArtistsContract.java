@@ -13,6 +13,10 @@ public interface ITopArtistsContract {
         void showArtists(List<ArtistEntity> artists);
 
         void openArtistDetails(ArtistEntity artist);
+
+        void startRefresh();
+
+        void stopRefresh();
     }
 
     interface Presenter extends ICoreMvpContract.Presenter<View>{
