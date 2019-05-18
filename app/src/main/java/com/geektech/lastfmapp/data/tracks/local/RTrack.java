@@ -1,56 +1,45 @@
 package com.geektech.lastfmapp.data.tracks.local;
 
-import com.geektech.lastfmapp.entities.ArtistEntity;
-import com.geektech.lastfmapp.entities.ImageOfEntity;
-import com.google.gson.annotations.SerializedName;
 
-import java.util.List;
 
+import com.geektech.lastfmapp.common.RImage;
+
+import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.Index;
 import io.realm.annotations.PrimaryKey;
 
 public class RTrack extends RealmObject {
     @PrimaryKey
-    private long rId;
-
-    @Index
     private String id;
 
     private String name;
-
     private String url;
-
     private String playcount;
-
     private String listeners;
+    private RealmList<RImage> images;
+    private RShortArtist artist;
 
-    public RTrack(long rId, String id, String name, String url, String playcount, String listeners) {
-        this.rId = rId;
+    public RTrack(String id, String name, String url, String playcount,
+                  String listeners, RealmList<RImage> images, RShortArtist artist) {
         this.id = id;
         this.name = name;
         this.url = url;
         this.playcount = playcount;
         this.listeners = listeners;
+        this.images = images;
+        this.artist = artist;
+    }
+
+    public RTrack(String name, String url, String playcount, String listeners, String id, RealmList<RImage> images) {
+        this.name = name;
+        this.url = url;
+        this.playcount = playcount;
+        this.listeners = listeners;
+        this.id = id;
+        this.images = images;
     }
 
     public RTrack() {
-    }
-
-    public long getrId() {
-        return rId;
-    }
-
-    public void setrId(long rId) {
-        this.rId = rId;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -83,5 +72,29 @@ public class RTrack extends RealmObject {
 
     public void setListeners(String listeners) {
         this.listeners = listeners;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public RealmList<RImage> getImages() {
+        return images;
+    }
+
+    public void setImages(RealmList<RImage> images) {
+        this.images = images;
+    }
+
+    public RShortArtist getArtist() {
+        return artist;
+    }
+
+    public void setArtist(RShortArtist artist) {
+        this.artist = artist;
     }
 }

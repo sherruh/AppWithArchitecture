@@ -5,8 +5,6 @@ import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.geektech.core.CoreUtils;
-
 public abstract class CoreMvpActivity<T extends ICoreMvpContract.Presenter> extends AppCompatActivity
     implements ICoreMvpContract.View<T> {
 
@@ -46,6 +44,6 @@ public abstract class CoreMvpActivity<T extends ICoreMvpContract.Presenter> exte
 
     @Override
     public void showMessage(String message) {
-        CoreUtils.showShortToast(this, message);
+
     }
 }

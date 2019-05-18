@@ -2,6 +2,7 @@ package com.geektech.lastfmapp.data.tracks;
 
 import android.support.annotation.Nullable;
 
+import com.geektech.core.Logger;
 import com.geektech.lastfmapp.data.tracks.local.ITracksLocalStorage;
 import com.geektech.lastfmapp.data.tracks.remote.ITracksRemoteStorage;
 import com.geektech.lastfmapp.entities.TrackEntity;
@@ -42,7 +43,7 @@ public class TracksRepository implements ITracksRepository {
         TrackEntity track = mCache.get(id);
 
         if (track == null && local != null) {
-            track = local.getTrack();
+            track = local.getTrack(id);
         }
 
         return track;
@@ -52,6 +53,7 @@ public class TracksRepository implements ITracksRepository {
     public void getTracks(final TracksCallback callback) {
         if (local != null) {
             local.getTracks(callback);
+            Logger.d("local");
         }
 
         if (remote != null) {

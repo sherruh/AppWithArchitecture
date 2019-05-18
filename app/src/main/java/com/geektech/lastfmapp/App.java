@@ -13,6 +13,9 @@ import com.geektech.lastfmapp.data.tracks.local.TracksLocalStorage;
 import com.geektech.lastfmapp.data.tracks.remote.TracksRemoteStorage;
 import com.geektech.lastfmapp.entities.ArtistEntity;
 
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
 public class App extends Application {
 
     public static ITracksRepository tracksRepository;
@@ -21,6 +24,8 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+
+        initRealm();
 
         tracksRepository = new TracksRepository(
                 new TracksLocalStorage(),
@@ -31,5 +36,17 @@ public class App extends Application {
                 new ArtistsLocalStorage(),
                 new ArtistsRemoteStorage()
         );
+    }
+
+    private void initRealm() {
+        Realm.init(this);
+
+        RealmConfiguration configuration = new RealmConfiguration.Builder()
+                .deleteRealmIfMigrationNeeded()
+                .name("lastfm.realm")
+                .schemaVersion(1)
+                .build();
+
+        Realm.setDefaultConfiguration(configuration);
     }
 }

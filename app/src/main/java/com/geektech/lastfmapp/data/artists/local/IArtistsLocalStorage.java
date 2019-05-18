@@ -12,5 +12,5 @@ public interface IArtistsLocalStorage {
 
     void setArtists(List<ArtistEntity> artists);
 
-    ArtistEntity getArtist();
+    ArtistEntity getArtist(String name);
 }

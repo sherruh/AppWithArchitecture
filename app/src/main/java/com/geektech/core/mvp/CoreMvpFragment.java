@@ -9,7 +9,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.geektech.core.CoreUtils;
 
 public abstract class CoreMvpFragment<T extends ICoreMvpContract.Presenter> extends Fragment
     implements ICoreMvpContract.View<T> {
@@ -52,6 +51,6 @@ public abstract class CoreMvpFragment<T extends ICoreMvpContract.Presenter> exte
 
     @Override
     public void showMessage(String message) {
-        CoreUtils.showShortToast(getContext(), message);
+
     }
 }

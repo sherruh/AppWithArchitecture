@@ -1,60 +1,77 @@
 package com.geektech.lastfmapp.data.tracks.local;
 
-import com.geektech.core.CoreRealmDataSource;
+import com.geektech.core.Logger;
+import com.geektech.core.realm.CoreRealmDataSource;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
 import com.geektech.lastfmapp.entities.TrackEntity;
 
-import java.util.ArrayList;
 import java.util.List;
+
+
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class TracksLocalStorage extends CoreRealmDataSource
         implements ITracksLocalStorage {
 
-    private List<RTrack> tracksToRTracks(List<TrackEntity> tracks){
+    private void getArtistTracks(String artistName, ITracksRepository.TracksCallback callback) {
+        Realm realm = null;
 
-        ArrayList<RTrack> result = new ArrayList<>();
+        try {
+            realm = getRealmInstance();
 
-        for (TrackEntity track:tracks){
-            result.add(trackToRTrack(track));
+            //TODO: Search tracks by artistName
+        } catch (Exception e) {
+            Logger.e(e);
+        } finally {
+            if (realm != null) {
+                realm.close();
+            }
         }
-
-        return result;
-    }
-
-    private RTrack trackToRTrack(TrackEntity track){
-        return null;
-    }
-
-    private List<TrackEntity> rtracksToTracks(List<RTrack> rTracks){
-
-        ArrayList<TrackEntity> result = new ArrayList<>();
-
-        for(RTrack rTrack:rTracks){
-
-            result.add(rTrackToTrack(rTrack));
-
-        }
-
-        return result;
-
-    }
-
-    private TrackEntity rTrackToTrack(RTrack rTrack){
-        return null;
     }
 
     @Override
     public void getTracks(ITracksRepository.TracksCallback callback) {
-        //TODO: Fetch from DB
+        Realm realm = getRealmInstance();
+
+        RealmResults<RTrack> results = realm.where(RTrack.class).findAll();
+
+        callback.onSuccess(
+                TracksMapper.toTracks(realm.copyFromRealm(results))
+        );
+
+        realm.close();
     }
 
     @Override
     public void setTracks(List<TrackEntity> tracks) {
-        //TODO: Save to DBw
+        executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+
+                for (TrackEntity track : tracks) {
+                    RTrack managedTrack = realm.where(RTrack.class)
+                            .equalTo("Id", track.getId())
+                            .findFirst();
+
+                    if (managedTrack == null) {
+                        realm.copyToRealm(TracksMapper.toRTrack(track));
+                    } else {
+                        managedTrack.setListeners(track.getListeners());
+                        managedTrack.setPlaycount(track.getPlaycount());
+                        managedTrack.setUrl(track.getUrl());
+                    }
+                }
+
+            }
+        });
     }
 
     @Override
-    public TrackEntity getTrack() {
+    public TrackEntity getTrack(String id) {
+        Realm realm = getRealmInstance();
+        RTrack rTrack=realm.where(RTrack.class).equalTo("id",id).findFirst();
+
         return null;
     }
 }

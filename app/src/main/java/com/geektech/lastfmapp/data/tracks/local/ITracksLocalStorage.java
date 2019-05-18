@@ -10,5 +10,5 @@ public interface ITracksLocalStorage {
 
     void setTracks(List<TrackEntity> tracks);
 
-    TrackEntity getTrack();
+    TrackEntity getTrack(String id);
 }
