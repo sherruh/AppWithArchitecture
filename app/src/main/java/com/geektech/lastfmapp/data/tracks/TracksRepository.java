@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import com.geektech.core.Logger;
 import com.geektech.lastfmapp.data.tracks.local.ITracksLocalStorage;
 import com.geektech.lastfmapp.data.tracks.remote.ITracksRemoteStorage;
+import com.geektech.lastfmapp.entities.ArtistEntity;
 import com.geektech.lastfmapp.entities.TrackEntity;
 
 import java.util.HashMap;
@@ -74,6 +75,23 @@ public class TracksRepository implements ITracksRepository {
                     callback.onFailure(message);
                 }
             });
+        }
+    }
+
+    @Override
+    public void getTopTracksOfArtist(TracksCallback callback, ArtistEntity artist) {
+        if (remote != null) {
+            remote.getTopTracksOfArtist(new TracksCallback() {
+                @Override
+                public void onSuccess(List<TrackEntity> tracks) {
+                    callback.onSuccess(tracks);
+                }
+
+                @Override
+                public void onFailure(String message) {
+                    callback.onFailure(message);
+                }
+            },artist);
         }
     }
 }

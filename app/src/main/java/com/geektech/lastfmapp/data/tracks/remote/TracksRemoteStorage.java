@@ -1,7 +1,9 @@
 package com.geektech.lastfmapp.data.tracks.remote;
 
+import com.geektech.core.Logger;
 import com.geektech.lastfmapp.data.tracks.ITracksRepository;
 import com.geektech.lastfmapp.data.tracks.remote.model.TracksResponse;
+import com.geektech.lastfmapp.entities.ArtistEntity;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -33,7 +35,8 @@ public class TracksRemoteStorage implements ITracksRemoteStorage {
                 API_KEY,
                 "json",
                 1,
-                100
+                100,
+                 ""
         );
 
         call.enqueue(new Callback<TracksResponse>() {
@@ -57,6 +60,43 @@ public class TracksRemoteStorage implements ITracksRemoteStorage {
         });
     }
 
+    @Override
+    public void getTopTracksOfArtist(ITracksRepository.TracksCallback callback, ArtistEntity artist) {
+
+        String name = artist.getName();
+        if (name.contains(" ")) name.replace(" ","%20");
+
+        Call<TracksResponse> call = client.getTracks(
+                "artist.gettoptracks",
+                API_KEY,
+                "json",
+                1,
+                100,
+                name
+
+        );
+
+        call.enqueue(new Callback<TracksResponse>() {
+            @Override
+            public void onResponse(Call<TracksResponse> call, Response<TracksResponse> response) {
+                if (response.isSuccessful()) {
+                    if (response.body() != null) {
+                        callback.onSuccess(response.body().getTopTracksOfArtist().getData());
+                    } else {
+                        callback.onFailure("Body is empty " + response.code());
+                    }
+                } else {
+                    callback.onFailure("Request failed " + response.code());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TracksResponse> call, Throwable t) {
+                callback.onFailure("Top tracks failure: " + t.getMessage());
+            }
+        });
+    }
+
     private interface TracksNetworkClient {
 
         @GET("/2.0/")
@@ -65,7 +105,8 @@ public class TracksRemoteStorage implements ITracksRemoteStorage {
                 @Query("api_key") String apiKey,
                 @Query("format") String format,
                 @Query("page") int page,
-                @Query("limit") int limit
+                @Query("limit") int limit,
+                @Query("artist") String artist
         );
     }
 }
