@@ -2,11 +2,9 @@ package com.geektech.lastfmapp.data.tracks.local;
 
 
 
-import android.media.Image;
-
 import com.geektech.lastfmapp.common.RImage;
 import com.geektech.lastfmapp.entities.ArtistEntity;
-import com.geektech.lastfmapp.entities.ImageOfEntity;
+import com.geektech.lastfmapp.entities.ImageEntity;
 import com.geektech.lastfmapp.entities.TrackEntity;
 
 import java.util.ArrayList;
@@ -20,7 +18,7 @@ class TracksMapper {
 
         RealmList<RImage> images = new RealmList<>();
 
-        for (ImageOfEntity image : track.getImage()) {
+        for (ImageEntity image : track.getImage()) {
             images.add(new RImage(image.getUrl(), image.getSize()));
         }
 
@@ -39,10 +37,10 @@ class TracksMapper {
         ArtistEntity artist=new ArtistEntity(track.getArtist().getName(),"",
                 track.getArtist().getUrl(),"",null);
 
-        ArrayList<ImageOfEntity> images = new ArrayList<>();
+        ArrayList<ImageEntity> images = new ArrayList<>();
 
         for (RImage image : track.getImages()) {
-            images.add(new ImageOfEntity(image.getUrl(), image.getSize()));
+            images.add(new ImageEntity(image.getUrl(), image.getSize()));
         }
 
         return new TrackEntity(

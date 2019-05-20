@@ -70,8 +70,8 @@ public class TracksLocalStorage extends CoreRealmDataSource
     @Override
     public TrackEntity getTrack(String id) {
         Realm realm = getRealmInstance();
-        RTrack rTrack=realm.where(RTrack.class).equalTo("id",id).findFirst();
-
-        return null;
+        RTrack rTrack = realm.where(RTrack.class).equalTo("id",id).findFirst();
+        realm.close();
+        return TracksMapper.toTrack(rTrack);
     }
 }

@@ -18,9 +18,9 @@ public class ArtistEntity implements Serializable {
     @SerializedName("listeners")
     private String listeners;
     @SerializedName("image")
-    private List<ImageOfEntity> image;
+    private List<ImageEntity> image;
 
-    public ArtistEntity(String name, String mbid, String url, String listeners, List<ImageOfEntity> image) {
+    public ArtistEntity(String name, String mbid, String url, String listeners, List<ImageEntity> image) {
         this.name = name;
         this.mbid = mbid;
         this.url = url;
@@ -36,7 +36,7 @@ public class ArtistEntity implements Serializable {
         this.listeners = listeners;
     }
 
-    public List<ImageOfEntity> getImage() {
+    public List<ImageEntity> getImage() {
         return image;
     }
 
@@ -48,7 +48,7 @@ public class ArtistEntity implements Serializable {
         this.id = String.valueOf(name.hashCode());
     }
 
-    public void setImage(List<ImageOfEntity> image) {
+    public void setImage(List<ImageEntity> image) {
         this.image = image;
     }
 

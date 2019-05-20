@@ -48,10 +48,9 @@ public class ArtistsLocalStorage extends CoreRealmDataSource implements IArtists
 
     @Override
     public ArtistEntity getArtist(String name) {
-        Realm realm=getRealmInstance();
-
-        RArtist artist=realm.where(RArtist.class).equalTo("name",name).findFirst();
-
+        Realm realm = getRealmInstance();
+        RArtist artist = realm.where(RArtist.class).equalTo("name",name).findFirst();
+        realm.close();
         return ArtistsMapper.rArtistToArtist(artist);
     }
 

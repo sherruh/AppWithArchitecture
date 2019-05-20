@@ -2,7 +2,7 @@ package com.geektech.lastfmapp.data.artists.local;
 
 import com.geektech.lastfmapp.common.RImage;
 import com.geektech.lastfmapp.entities.ArtistEntity;
-import com.geektech.lastfmapp.entities.ImageOfEntity;
+import com.geektech.lastfmapp.entities.ImageEntity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +15,7 @@ public class ArtistsMapper {
 
         RealmList<RImage> images = new RealmList<>();
 
-        for (ImageOfEntity image : artist.getImage()) {
+        for (ImageEntity image : artist.getImage()) {
             images.add(new RImage(image.getUrl(), image.getSize()));
         }
 
@@ -29,10 +29,10 @@ public class ArtistsMapper {
 
     static ArtistEntity rArtistToArtist(RArtist artist){
 
-        ArrayList<ImageOfEntity> images = new ArrayList<>();
+        ArrayList<ImageEntity> images = new ArrayList<>();
 
         for (RImage image : artist.getImages()) {
-            images.add(new ImageOfEntity(image.getUrl(), image.getSize()));
+            images.add(new ImageEntity(image.getUrl(), image.getSize()));
         }
 
         return new ArtistEntity(

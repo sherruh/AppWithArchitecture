@@ -27,9 +27,9 @@ public class TrackEntity implements Serializable {
     private String listeners;
 
     @SerializedName("image")
-    private List<ImageOfEntity> image;
+    private List<ImageEntity> image;
 
-    public TrackEntity( String name, ArtistEntity artist, String url, String playcount, String listeners, List<ImageOfEntity> image) {
+    public TrackEntity( String name, ArtistEntity artist, String url, String playcount, String listeners, List<ImageEntity> image) {
         this.name = name;
         this.artist = artist;
         this.url = url;
@@ -71,11 +71,11 @@ public class TrackEntity implements Serializable {
         this.listeners = listeners;
     }
 
-    public List<ImageOfEntity> getImage() {
+    public List<ImageEntity> getImage() {
         return image;
     }
 
-    public void setImage(List<ImageOfEntity> image) {
+    public void setImage(List<ImageEntity> image) {
         this.image = image;
     }
 

@@ -4,14 +4,14 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class ImageOfEntity implements Serializable {
+public class ImageEntity implements Serializable {
     @SerializedName("#text")
     private String url;
 
     @SerializedName("size")
     private String size;
 
-    public ImageOfEntity(String url, String size) {
+    public ImageEntity(String url, String size) {
         this.url = url;
         this.size = size;
     }
